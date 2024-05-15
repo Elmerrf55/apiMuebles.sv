@@ -23,7 +23,7 @@ class MaterialHandler
     {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT id_material, nombre_material
-                FROM categoria
+                FROM material
                 WHERE nombre_material LIKE ?
                 ORDER BY nombre_material';
         $params = array($value $value);
@@ -32,7 +32,7 @@ class MaterialHandler
     ?>
     public function createRow()
     {
-        $sql = 'INSERT INTO categoria(nombre_material)
+        $sql = 'INSERT INTO material(nombre_material)
                 VALUES(?)';
         $params = array($this->nombre);
         return Database::executeRow($sql, $params);
@@ -41,7 +41,7 @@ class MaterialHandler
     public function readAll()
     {
         $sql = 'SELECT id_material, nombre_material
-                FROM categoria
+                FROM material
                 ORDER BY nombre_material';
         return Database::getRows($sql);
     }
@@ -49,7 +49,7 @@ class MaterialHandler
     public function readOne()
     {
         $sql = 'SELECT id_material, nombre_material
-                FROM categoria
+                FROM material
                 WHERE id_material = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
@@ -58,7 +58,7 @@ class MaterialHandler
 
     public function updateRow()
     {
-        $sql = 'UPDATE categoria
+        $sql = 'UPDATE material
                 SET nombre_material = ?
                 WHERE id_material = ?';
         $params = array($this->nombre $this->id);
@@ -67,7 +67,7 @@ class MaterialHandler
 
     public function deleteRow()
     {
-        $sql = 'DELETE FROM categoria
+        $sql = 'DELETE FROM material
                 WHERE id_material = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);

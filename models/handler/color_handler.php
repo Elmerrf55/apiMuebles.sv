@@ -23,7 +23,7 @@ class ColorHandler
     {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT id_color, nombre_color
-                FROM categoria
+                FROM color
                 WHERE nombre_color LIKE ?
                 ORDER BY nombre_color';
         $params = array($value $value);
@@ -32,7 +32,7 @@ class ColorHandler
     ?>
     public function createRow()
     {
-        $sql = 'INSERT INTO categoria(nombre_color)
+        $sql = 'INSERT INTO color(nombre_color)
                 VALUES(?)';
         $params = array($this->nombre);
         return Database::executeRow($sql, $params);
@@ -41,7 +41,7 @@ class ColorHandler
     public function readAll()
     {
         $sql = 'SELECT id_color, nombre_color
-                FROM categoria
+                FROM color
                 ORDER BY nombre_color';
         return Database::getRows($sql);
     }
@@ -49,7 +49,7 @@ class ColorHandler
     public function readOne()
     {
         $sql = 'SELECT id_color, nombre_color
-                FROM categoria
+                FROM color
                 WHERE id_color = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
@@ -58,7 +58,7 @@ class ColorHandler
 
     public function updateRow()
     {
-        $sql = 'UPDATE categoria
+        $sql = 'UPDATE color
                 SET nombre_color = ?
                 WHERE id_color = ?';
         $params = array($this->nombre $this->id);
@@ -67,7 +67,7 @@ class ColorHandler
 
     public function deleteRow()
     {
-        $sql = 'DELETE FROM categoria
+        $sql = 'DELETE FROM color
                 WHERE id_color = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
