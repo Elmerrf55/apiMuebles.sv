@@ -18,21 +18,21 @@ class CategoriaHandler
     /*
      *  Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
      */
-    <?php
-    public function searchRows()
+
+    /*public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT id_categoria, nombre_categoria
-                FROM categoria
+                FROM tb_categorias
                 WHERE nombre_categoria LIKE ?
                 ORDER BY nombre_categoria';
-        $params = array($value $value);
+        $params = array($value);
         return Database::getRows($sql, $params);
-    }
-    ?>
+    }*/
+
     public function createRow()
     {
-        $sql = 'INSERT INTO categoria(nombre_categoria)
+        $sql = 'INSERT INTO tb_categorias(nombre_categoria)
                 VALUES(?)';
         $params = array($this->nombre);
         return Database::executeRow($sql, $params);
@@ -41,7 +41,7 @@ class CategoriaHandler
     public function readAll()
     {
         $sql = 'SELECT id_categoria, nombre_categoria
-                FROM categoria
+                FROM tb_categorias
                 ORDER BY nombre_categoria';
         return Database::getRows($sql);
     }
@@ -49,7 +49,7 @@ class CategoriaHandler
     public function readOne()
     {
         $sql = 'SELECT id_categoria, nombre_categoria
-                FROM categoria
+                FROM tb_categorias
                 WHERE id_categoria = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
@@ -57,16 +57,16 @@ class CategoriaHandler
 
     public function updateRow()
     {
-        $sql = 'UPDATE categoria
+        $sql = 'UPDATE tb_categorias
                 SET nombre_categoria = ?
                 WHERE id_categoria = ?';
-        $params = array($this->nombre $this->id);
+        $params = array($this->nombre, $this->id);
         return Database::executeRow($sql, $params);
     }
 
     public function deleteRow()
     {
-        $sql = 'DELETE FROM categoria
+        $sql = 'DELETE FROM tb_categorias
                 WHERE id_categoria = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
